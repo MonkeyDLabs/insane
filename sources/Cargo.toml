@@ -1,0 +1,123 @@
+[workspace]
+members = [
+  "crates/insane-cli",
+  "crates/insane-core",
+  "crates/insane-http",
+  # "crates/insane-utils",
+]
+resolver = "2"
+
+[workspace.package]
+version = "0.0.1"
+authors = ["Monkey d labs Maintainers <xxxx@xx.com>"]
+repository = "xxxx"
+homepage = "xxxx"
+license = "xxxxx"
+edition = "2021"
+
+[workspace.dependencies]
+insane-core = { path = "crates/insane-core", version = "0.1.0" }
+insane-http = { path = "crates/insane-http", version = "0.1.0" }
+# insane-database = { path = "crates/insane-database", version = "0.1.0" }
+# insane-utils = { path = "crates/insane-utils", version = "0.1.0" }
+
+async-trait = "0.1.80"
+tokio = { version = "1.33.0", features = [
+  "rt-multi-thread",
+  "time",
+  "macros",
+  "net",
+  "signal",
+] }
+
+backtrace_printer = { version = "1.3.0" }
+eyre = "0.6"
+thiserror = "1.0"
+anstream = "0.6.5"
+color-print = "0.3.5"
+tracing = "0.1.40"
+tracing-attributes = "0.1.27"
+tracing-futures = "0.2.5"
+tracing-subscriber = { version = "0.3.18", features = [
+  "json",
+  "registry",
+  "env-filter",
+] }
+chrono = "0.4.31"
+nanoid = "0.4.0"
+config = "0.14.0"
+atty = "0.2"
+clap = { version = "4.4.7", features = [
+  "derive",
+  "cargo",
+  "string",
+  "wrap_help",
+] }
+clap_complete = "4.3.2"
+colored = "2"
+
+cfg-if = "1"
+dotenv = "0.15"
+
+serde = { version = "1.0.159", features = ["derive"] }
+serde_json = "1.0.111"
+serde_yaml = "0.9"
+serde_variant = "0.1.2"
+
+shellexpand = "3.0"
+strum = "0.26"
+strum_macros = "0.26"
+jsonwebtoken = "9.3.0"
+
+dirs-next = "2.0.0"
+lazy_static = "1.4.0"
+url = { version = "2.5.0", features = ["serde"] }
+pin-project-lite = "0.2.14"
+regex = "1.10.4"
+derive_builder = "0.20.0"
+
+futures-util = "0.3"
+hyper = "1.1"
+mime = "0.3"
+bytes = "1.1"
+byte-unit = "5.1.4"
+fs-err = "2.11.0"
+tower = "0.4"
+tower-http = { version = "0.5.0", features = [
+  "trace",
+  "catch-panic",
+  "timeout",
+  "add-extension",
+  "cors",
+  "fs",
+  "set-header",
+  "compression-full",
+] }
+
+# DATABASE
+# sea-orm = { version = "1.0.0-rc.1", features = [
+#   "sqlx-postgres",        # `DATABASE_DRIVER` feature
+#   "sqlx-sqlite",
+#   "runtime-tokio-rustls",
+#   "macros",
+# ] }
+
+# [dependencies.sea-orm-migration]
+# optional = true
+# version = "1.0.0-rc.1"
+# features = [
+#   # Enable at least one `ASYNC_RUNTIME` and `DATABASE_DRIVER` feature if you want to run migration via CLI.
+#   # View the list of supported features at https://www.sea-ql.org/SeaORM/docs/install-and-config/database-and-async-runtime.
+#   # e.g.
+#   "runtime-tokio-rustls", # `ASYNC_RUNTIME` feature
+#   "sqlx-postgres",        # `DATABASE_DRIVER` feature
+#   "sqlx-sqlite",
+# ]
+
+[profile.release]
+# Tell `rustc` to optimize for small code size.
+opt-level = "s"
+
+# [patch.crates-io]
+# # workaround to break the circular dependency for ahash(https://github.com/tkaitchuck/aHash/issues/95)
+# getrandom = { git = 'https://github.com/killix/getrandom.git'}

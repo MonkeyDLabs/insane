@@ -1,0 +1,56 @@
+[package]
+name = "insane-core"
+version = "0.1.0"
+edition = "2021"
+
+[features]
+default = ["with-sql"]
+with-sql = ["dep:sea-orm", "dep:sea-orm-migration"]
+with-redis = []
+
+[dependencies]
+# insane-http = { workspace = true }
+# insane-utils = { workspace = true }
+# insane-database = { workspace = true, optional = true }
+
+eyre = { workspace = true }
+backtrace_printer = { workspace = true }
+colored = { workspace = true }
+
+atty = { workspace = true }
+clap = { workspace = true }
+tracing = { workspace = true }
+tracing-attributes = { workspace = true }
+tracing-futures = { workspace = true }
+tracing-subscriber = { workspace = true }
+thiserror = { workspace = true }
+regex = { workspace = true }
+tokio = { workspace = true }
+
+serde = { workspace = true }
+serde_json = { workspace = true }
+serde_yaml = { workspace = true }
+serde_variant = { workspace = true }
+
+config = { workspace = true }
+async-trait = { workspace = true }
+lazy_static = { workspace = true }
+
+sea-orm = { optional = true, version = "1.0.0-rc.1", features = [
+  "sqlx-postgres",        # `DATABASE_DRIVER` feature
+  "sqlx-sqlite",
+  "runtime-tokio-rustls",
+  "macros",
+] }
+
+[dependencies.sea-orm-migration]
+optional = true
+version = "1.0.0-rc.1"
+features = [
+  # Enable at least one `ASYNC_RUNTIME` and `DATABASE_DRIVER` feature if you want to run migration via CLI.
+  # View the list of supported features at https://www.sea-ql.org/SeaORM/docs/install-and-config/database-and-async-runtime.
+  # e.g.
+  "runtime-tokio-rustls", # `ASYNC_RUNTIME` feature
+  "sqlx-postgres",        # `DATABASE_DRIVER` feature
+  "sqlx-sqlite",
+]

@@ -1,0 +1,29 @@
+[package]
+name = "insane-example"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+insane-cli = { path = "../sources/crates/insane-cli", version = "0.1.0", features = ["with-sql"] }
+insane-core = { path = "../sources/crates/insane-core", version = "0.1.0", features = ["with-sql"] }
+# insane-database = { path = "../sources/crates/insane-database", version = "0.1.0" }
+insane-http = { path = "../sources/crates/insane-http", version = "0.1.0" }
+# insane-utils = { path = "../sources/crates/insane-utils", version = "0.1.0" }
+
+migration = { path = "migration" }
+
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+eyre = "0.6"
+tokio = { version = "1.33.0", default-features = false }
+async-trait = "0.1.74"
+tracing = "0.1.40"
+tracing-subscriber = { version = "0.3.16", features = ["env-filter"] }
+chrono = "0.4"
+sea-orm = { version = "1.0.0-rc.1", features = [
+  "sqlx-sqlite",
+  "sqlx-postgres",
+  "runtime-tokio-rustls",
+  "macros",
+] }
+thiserror = "1"
